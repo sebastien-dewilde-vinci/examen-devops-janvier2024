@@ -1,0 +1,30 @@
+name: Examen DevOps Janvier 2024
+
+on:
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [18.x]
+
+    steps:
+      - name: Installing dependencies
+        run: npm ci
+
+      - name: run prettier
+        run: npm run prettier
+
+      - name: run lint
+        run: npm run lint
+
+      - name: run test
+        run: npm run test
+
+      - name: Building project
+        run: npm run build
